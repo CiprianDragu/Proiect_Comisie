@@ -149,14 +149,14 @@ Pentru a construi imaginea Docker pentru scriptul Bash, rulați:
 
 ## bash
 ```bash
-docker build -f Dockerfile.bash -t bash-system-info .
+docker build -f Dockerfile.bash -t bash-system-info
 ```
 
 Pentru a construi imaginea Docker pentru scriptul Python, rulați:
 
 ## python
 ```python
-docker build -f Dockerfile.python -t python-system-info .
+docker build -f Dockerfile.python -t python-system-info
 ```
 
 ## Porniți containerele
