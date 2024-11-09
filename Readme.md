@@ -91,29 +91,11 @@ while True:
     print(f"Spațiu Disk - Total: {disk.total / (1024 ** 3):.2f} GB, Utilizat: {disk.used / (1024 ** 3):.2f} GB")
     print("-------------------------------------------")
     time.sleep(interval)
-Configurarea Docker
-Dockerfile pentru Scriptul Bash (Dockerfile.bash)
-Acest Dockerfile creează o imagine Docker care rulează scriptul Bash.
-
-Dockerfile
-Copy code
-FROM ubuntu:latest
-
-RUN apt-get update && apt-get install -y \
-    bash \
-    coreutils \
-    procps \
-    util-linux
-
-COPY system_info.sh /system_info.sh
-
-CMD ["/bin/bash", "/system_info.sh"]
 ```
 
 ## Configurarea Docker
 ### Dockerfile pentru Scriptul Bash (Dockerfile.bash)
-
-## Dockerfile
+Acest Dockerfile creează o imagine Docker care rulează scriptul Bash.
 ```Dockerfile
 FROM ubuntu:latest
 
@@ -206,7 +188,7 @@ services:
       context: .
       dockerfile: Dockerfile.python
     container_name: python-container-v2
-```  
+
 
 ## Construiți și porniți containerele folosind Docker Compose
 
