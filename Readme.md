@@ -206,6 +206,7 @@ services:
       context: .
       dockerfile: Dockerfile.python
     container_name: python-container-v2
+```
 
 
 ## Construiți și porniți containerele folosind Docker Compose
