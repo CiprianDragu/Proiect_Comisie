@@ -115,32 +115,37 @@ while True:
 ### Dockerfile pentru Scriptul Bash (Dockerfile.bash)
 Acest Dockerfile creează o imagine Docker care rulează scriptul Bash.
 ```Dockerfile
+# Dockerfile.bash
 FROM ubuntu:latest
 
-RUN apt-get update && apt-get install -y \
-    bash \
-    coreutils \
-    procps \
-    util-linux
+# Install necessary packages to run the Bash script
+RUN apt-get update && \
+    apt-get install -y bash lsb-release procps
 
+# Create and copy the Bash script into the container
 COPY system_info.sh /system_info.sh
 
-CMD ["/bin/bash", "/system_info.sh"]
+# Ensure the script has execute permissions
+RUN chmod +x /system_info.sh
+
+# Run the script as the main command
+CMD ["/system_info.sh"]
 ```
 
 ### Dockerfile pentru Scriptul Python (Dockerfile.python)
 Acest Dockerfile creează o imagine Docker pentru scriptul Python.
 ## Dockerfile
 ```Dockerfile
+# Dockerfile.python
 FROM python:3
 
+# Install the psutil package required by the Python script
 RUN pip install psutil
-RUN apt-get update && apt-get install -y \
-    procps \
-    lscpu
 
+# Create and copy the Python script into the container
 COPY system_info.py /system_info.py
 
+# Run the Python script as the main command
 CMD ["python", "/system_info.py"]
 ```
 
