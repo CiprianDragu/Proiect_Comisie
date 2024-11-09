@@ -64,6 +64,9 @@ while true; do
     sleep $interval
 done
 ```
+Salvați acest script cu numele sistem_info.sh, faceți-l executabil cu comanda 
+chmod +x sistem_info.sh, și apoi rulați-l cu ./sistem_info.sh.
+
 ## Scriptul Python (system_info.py)
 Acest script Python folosește biblioteca psutil pentru a afișa informații similare despre sistem la intervale regulate.
 ### Exemplu de Script Python
@@ -110,10 +113,15 @@ while True:
     # Așteptăm pentru intervalul specificat
     time.sleep(interval)
 ```
+Salvați acest script cu numele sistem_info.py și rulați-l cu python3 sistem_info.py.
+
 
 ## Configurarea Docker
+Creăm un fișier Dockerfile folosind o imagine de bază Ubuntu. Vom copia scriptul Bash în container și îl vom seta ca și comandă de rulare.
 ### Dockerfile pentru Scriptul Bash (Dockerfile.bash)
 Acest Dockerfile creează o imagine Docker care rulează scriptul Bash.
+Salvați acest fișier ca Dockerfile.bash
+
 ```Dockerfile
 # Dockerfile.bash
 FROM ubuntu:latest
@@ -131,9 +139,12 @@ RUN chmod +x /system_info.sh
 # Run the script as the main command
 CMD ["/system_info.sh"]
 ```
+Apoi, în același director, salvați scriptul Bash ca sistem_info.sh.
 
 ### Dockerfile pentru Scriptul Python (Dockerfile.python)
+Creăm un alt fișier Dockerfile folosind o imagine de bază Python. Vom copia scriptul Python în container și îl vom seta ca și comandă de rulare.
 Acest Dockerfile creează o imagine Docker pentru scriptul Python.
+Salvați acest fișier ca Dockerfile.python
 ## Dockerfile
 ```Dockerfile
 # Dockerfile.python
@@ -148,6 +159,9 @@ COPY system_info.py /system_info.py
 # Run the Python script as the main command
 CMD ["python", "/system_info.py"]
 ```
+Apoi, în același director, salvați scriptul Python ca sistem_info.py.
+În terminal, navigați în directorul unde sunt salvate fișierele
+ Dockerfile.bash, Dockerfile.python, sistem_info.sh și sistem_info.py
 
 ## Construiți imaginile Docker
 Pentru a construi imaginea Docker pentru scriptul Bash, rulați:
@@ -194,7 +208,8 @@ docker rm bash-container python-container
 ```
 ## Construiți și porniți containerele folosind Docker Compose
 ### Creați fișierul docker-compose.yml
-În același director, creați un fișier docker-compose.yml cu următorul conținut:
+Salvați următorul conținut într-un fișier numit docker-compose.yml în același director cu cele două Dockerfile
+ (Dockerfile.bash și Dockerfile.python), precum și cu scripturile sistem_info.sh și sistem_info.py.
 ## yaml
 ```yaml
 version: '3.8'
