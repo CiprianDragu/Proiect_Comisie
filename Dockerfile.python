@@ -1,0 +1,11 @@
+# Dockerfile.python
+FROM python:3
+
+# Install the psutil package required by the Python script
+RUN pip install psutil
+
+# Create and copy the Python script into the container
+COPY system_info.py /system_info.py
+
+# Run the Python script as the main command
+CMD ["python", "/system_info.py"]

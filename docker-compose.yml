@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  bash-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.bash
+    container_name: bash-container-v2
+    
+  python-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    container_name: python-container-v2

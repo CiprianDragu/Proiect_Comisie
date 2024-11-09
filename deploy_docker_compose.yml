@@ -1,0 +1,43 @@
+---
+- name: Deploy Docker Compose services
+  hosts: target_host  # Replace with your target host group or hostname
+  become: yes
+
+  tasks:
+    - name: Ensure deployment directory exists
+      file:
+        path: /opt/docker_compose_services  # Specify the target directory
+        state: directory
+        mode: '0755'
+
+    - name: Copy Dockerfile.bash
+      copy:
+        src: Dockerfile.bash
+        dest: /opt/docker_compose_services/Dockerfile.bash
+
+    - name: Copy Dockerfile.python
+      copy:
+        src: Dockerfile.python
+        dest: /opt/docker_compose_services/Dockerfile.python
+
+    - name: Copy system_info.sh
+      copy:
+        src: system_info.sh
+        dest: /opt/docker_compose_services/system_info.sh
+        mode: '0755'
+
+    - name: Copy system_info.py
+      copy:
+        src: system_info.py
+        dest: /opt/docker_compose_services/system_info.py
+        mode: '0755'
+
+    - name: Copy docker-compose.yml
+      copy:
+        src: docker-compose.yml
+        dest: /opt/docker_compose_services/docker-compose.yml
+
+    - name: Run Docker Compose to deploy services
+      shell: docker-compose up -d
+      args:
+        chdir: /opt/docker_compose_services
